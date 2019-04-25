@@ -20,5 +20,27 @@ module.exports = {
     delete user.hash
     req.session.user = user
     res.status(201).send(req.session.user)
+  },
+
+  login: async (req, res) => {
+    const db = req.app.get('db')
+    const {username, password, isAdmin} = req.body
+
+    foundUser = await db.get_user(username)
+    user = foundUser[0]
+
+    if(!user){
+      return res.status(401).send(`username or password incorrect`)
+    }
+    isAuthenticated = bcrypt.compareSync(password, user.hash)
+
+    if(!isAuthenticated){
+      return res.status(401).send(`username or password incorrect`)
+    } 
+
+    delete user.hash
+    req.session.user = user
+    res.send(req.session.user)
+      
   }
 }

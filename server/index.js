@@ -21,6 +21,7 @@ app.use(session({
 }))
 
 app.post('/auth/register', AuthCtrl.register)
+app.post('/auth/login', AuthCtrl.login)
 
 
 app.listen(PORT_NUMBER, ()=>{
