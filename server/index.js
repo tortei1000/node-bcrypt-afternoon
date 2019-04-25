@@ -27,6 +27,8 @@ app.post('/auth/login', AuthCtrl.login)
 app.get('/auth/logout', AuthCtrl.logout)
 app.get('/api/treasure/dragon', TreasureCtrl.dragonTreasure)
 app.get('/api/treasure/user',auth.usersOnly, TreasureCtrl.getUserTreasure)
+app.post('/api/treasure/user', auth.usersOnly, TreasureCtrl.addUserTreasure)
+app.get('/api/treasure/all', auth.usersOnly, TreasureCtrl.getAllTreasure)
 
 app.listen(PORT_NUMBER, ()=>{
   console.log(`1-server is online on port ${PORT_NUMBER}`)
