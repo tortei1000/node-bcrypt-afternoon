@@ -27,10 +27,10 @@ module.exports = {
 
   getAllTreasure : async (req, res) => {
     const db = req.app.get('db')
-    const {id} = req.session.user
-    const treasure = await db.get_all_treasure(id)
+    
+    const allTreasure = await db.get_all_treasure()
 
-    res.status(200).send(treasure)
+    res.status(200).send(allTreasure)
 
   }
-}
+} 
