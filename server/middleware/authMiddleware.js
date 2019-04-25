@@ -4,5 +4,12 @@ module.exports = {
       return res.status(401).send(`please log in`)
     }
     next()
+  },
+
+  adminsOnly: (req,res,next) =>{
+    if(!req.session.user.isAdmin){
+      res.status(403).send(`not admin`)
+    }
+    next()
   }
 }
